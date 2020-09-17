@@ -1,18 +1,18 @@
 package sp.supportconnection.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString
+@NoArgsConstructor()
 public class User {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id")
     private Long id;
 
@@ -28,5 +28,19 @@ public class User {
     @OneToOne
     @JoinColumn(name = "condition_id")
     private Condition condition;
+
+    @OneToOne
+    @JoinColumn(name = "asset_id")
+    private Asset asset;
+
+    @OneToOne
+    @JoinColumn(name = "available_id")
+    private AvailableSupport availableSupport;
+
+    /*
+    @ManyToMany
+    @JoinTable(name = "user_support", joinColunms = @JoinColumn(name ="user_id"), inverseJoinColumns = @JoinColumn(name = "support_id))
+    private List<Support> supports = new ArrayList<Support>();
+    */
 
 }
