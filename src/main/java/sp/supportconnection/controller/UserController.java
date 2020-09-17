@@ -2,6 +2,7 @@ package sp.supportconnection.controller;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sp.supportconnection.entity.User;
@@ -15,7 +16,7 @@ public class UserController {
     private final UserService userService;
 
     //로그인
-    @PostMapping("/user/login")
+    @PostMapping(value = "/user/login", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity login(@RequestBody UserRequest request){
         User user = new User();
         user.setName(request.getName());
@@ -32,4 +33,11 @@ public class UserController {
         private String phoneNumber;
         private int age;
     }
+
+    //MyPage(Main) 조회
+    @GetMapping("/user/{id}")
+    public ResponseEntity getMyinfo(@PathVariable("id") Long id){
+        return ResponseEntity.ok(userService.getMyinfo(id));
+    }
+
 }

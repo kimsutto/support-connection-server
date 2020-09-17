@@ -21,7 +21,7 @@ public class Condition {
 
     private String province;
 
-    private String disrict;
+    private String district;
 
     @Column(name="income_group")
     private int incomeGroup;
@@ -30,24 +30,24 @@ public class Condition {
     private int annualIncome;
 
     @Column(name="is_married")
-    private boolean isMarried;
+    private int isMarried;
 
     @Column(name="have_child")
-    private boolean haveChild;
+    private int haveChild;
 
     @Column(name="child_age")
     private int childAge;
 
     @Column(name="is_pregnant")
-    private boolean isPregnant;
+    private int isPregnant;
 
     private int occupation;
 
     @Column(name="is_temporary")
-    private boolean isTemporary;
+    private int isTemporary;
 
     @Column(name="is_unemployed")
-    private boolean isUnemployed;
+    private int isUnemployed;
 
     @Column(name="business_type")
     private String businessType;

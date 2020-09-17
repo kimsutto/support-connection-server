@@ -16,6 +16,7 @@ public class User {
     @Column(name="user_id")
     private Long id;
 
+    @Column(name="username")
     private String name;
 
     private String agency;
@@ -25,9 +26,9 @@ public class User {
 
     private int age;
 
-    @OneToOne
-    @JoinColumn(name = "condition_id")
-    private Condition condition;
+    //@OneToOne
+    //@JoinColumn(name = "condition_id")
+    //private Condition condition;
 
     @OneToOne
     @JoinColumn(name = "asset_id")
