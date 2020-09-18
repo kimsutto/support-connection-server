@@ -1,17 +1,13 @@
 package sp.supportconnection.controller;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import sp.supportconnection.entity.Condition;
+import sp.supportconnection.dto.ConditionRequest;
 import sp.supportconnection.service.ConditionService;
-import sp.supportconnection.service.UserService;
-
-import javax.persistence.Column;
 
 @RestController
 @RequiredArgsConstructor

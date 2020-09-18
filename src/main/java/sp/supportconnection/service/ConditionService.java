@@ -1,10 +1,9 @@
 package sp.supportconnection.service;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sp.supportconnection.controller.ConditionRequest;
+import sp.supportconnection.dto.ConditionRequest;
 import sp.supportconnection.entity.Condition;
 import sp.supportconnection.entity.Support;
 import sp.supportconnection.entity.User;
@@ -14,7 +13,6 @@ import sp.supportconnection.repository.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)

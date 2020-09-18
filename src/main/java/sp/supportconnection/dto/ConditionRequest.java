@@ -1,4 +1,4 @@
-package sp.supportconnection.controller;
+package sp.supportconnection.dto;
 
 import lombok.Data;
 
