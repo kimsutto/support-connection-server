@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name="ASSET")
 public class Asset {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +21,12 @@ public class Asset {
 
     @Column(name="support_remain")
     private int supportRemain;
+
+    public Asset(int myAsset, int supportRemain){
+        this.myAsset = myAsset;
+        this.supportRemain = supportRemain;
+    }
+
 }
+
+

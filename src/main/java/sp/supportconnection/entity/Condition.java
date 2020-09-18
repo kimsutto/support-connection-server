@@ -5,16 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor()
+@Table(name="CONDITIONS")
 public class Condition {
+
     @Id @GeneratedValue
     @Column(name="condition_id")
     private Long id;
@@ -56,6 +55,6 @@ public class Condition {
     private int businessScale;
 
     @Column(name="annual_sale")
-    private int anuualSale;
+    private int annualSale;
 
 }

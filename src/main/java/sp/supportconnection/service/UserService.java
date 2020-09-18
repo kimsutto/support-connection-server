@@ -3,10 +3,16 @@ package sp.supportconnection.service;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import sp.supportconnection.entity.Asset;
+import sp.supportconnection.entity.AvailableSupport;
+import sp.supportconnection.entity.Condition;
 import sp.supportconnection.entity.User;
+import sp.supportconnection.repository.AssetRepository;
+import sp.supportconnection.repository.AvailableSupportRepository;
+import sp.supportconnection.repository.ConditionRepository;
 import sp.supportconnection.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.List;
+
 import java.util.Optional;
 
 @Service
@@ -14,6 +20,9 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class UserService {
     private final UserRepository userRepository;
+    private final AssetRepository assetRepository;
+    private final AvailableSupportRepository availableSupportRepository;
+    private final ConditionRepository conditionRepository;
 
     @Transactional
     public Long join(User user){
@@ -23,14 +32,29 @@ public class UserService {
         }else {
             userRepository.save(user);
             Optional<User> findUser2 = userRepository.findByPhoneNumber(user.getPhoneNumber());
-            return findUser2.get().getId();
+            Long userId = findUser2.get().getId();
+
+            Asset asset = new Asset(0,0);
+            assetRepository.save(asset);
+
+            AvailableSupport availableSupport = new AvailableSupport(0,0,0);
+            availableSupportRepository.save(availableSupport);
+
+            Condition condition = new Condition();
+            conditionRepository.save(condition);
+
+            user.setAsset(asset);
+            user.setAvailableSupport(availableSupport);
+            user.setCondition(condition);
+            userRepository.save(user);
+
+            return userId;
 
         }
     }
 
     public UserInfoResponse getMyinfo(Long id){
         Optional<User> user = userRepository.findById(id);
-        System.out.println(user);
         UserInfoResponse userInfoResponse = new UserInfoResponse();
         if(user.isPresent()){
             userInfoResponse.setName(user.get().getName());

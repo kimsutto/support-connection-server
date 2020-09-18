@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name="AVAILABLE_SUPPORT")
 public class AvailableSupport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,5 +26,11 @@ public class AvailableSupport {
 
     @Column(name="financial_amount")
     private int financialAmount;
+
+    public AvailableSupport(int totalAmount, int cashAmount, int financialAmount){
+        this.totalAmount = totalAmount;
+        this.cashAmount = cashAmount;
+        this.financialAmount = financialAmount;
+    }
 
 }

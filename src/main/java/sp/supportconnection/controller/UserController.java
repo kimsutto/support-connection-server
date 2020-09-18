@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import sp.supportconnection.entity.User;
 import sp.supportconnection.service.UserService;
 
-import javax.persistence.Column;
-
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -39,5 +37,7 @@ public class UserController {
     public ResponseEntity getMyinfo(@PathVariable("id") Long id){
         return ResponseEntity.ok(userService.getMyinfo(id));
     }
+
+
 
 }

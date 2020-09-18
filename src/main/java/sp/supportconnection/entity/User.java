@@ -3,13 +3,16 @@ package sp.supportconnection.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
-@Entity
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor()
+@Entity
+@Table(name="USER")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +29,9 @@ public class User {
 
     private int age;
 
-    //@OneToOne
-    //@JoinColumn(name = "condition_id")
-    //private Condition condition;
+    @OneToOne
+    @JoinColumn(name = "condition_id")
+    private Condition condition;
 
     @OneToOne
     @JoinColumn(name = "asset_id")
@@ -38,10 +41,10 @@ public class User {
     @JoinColumn(name = "available_id")
     private AvailableSupport availableSupport;
 
-    /*
+
     @ManyToMany
-    @JoinTable(name = "user_support", joinColunms = @JoinColumn(name ="user_id"), inverseJoinColumns = @JoinColumn(name = "support_id))
+    @JoinTable(name="USER_SUPPORT", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name= "support_id"))
     private List<Support> supports = new ArrayList<Support>();
-    */
+
 
 }
