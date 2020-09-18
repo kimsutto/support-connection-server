@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -64,6 +65,6 @@ public class Condition {
     private int businessScale;
 
     @Column(name="annual_sale")
-    private int annualSale;
+    private Integer annualSale;
 
 }

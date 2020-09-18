@@ -13,6 +13,7 @@ import sp.supportconnection.repository.ConditionRepository;
 import sp.supportconnection.repository.SupportRepository;
 import sp.supportconnection.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -65,7 +66,14 @@ public class ConditionService {
 
         //연관 관계 설정 update하기 -> user-support table도 같이 업데이트
         List<Support> supports = supportRepository.findAll();
-        supports.stream().filter(support -> matching(support.getCondition(),condition.get()));
+        List<Support> matchingSupports = new ArrayList<>();
+        for(Support support : supports){
+            if(matching(support.getCondition(),condition.get())){
+                matchingSupports.add(support);
+            }
+        }
+
+        //supports.stream().filter(support -> matching(support.getCondition(),condition.get()));
 
 
         //나중에 .. 함수 분리 하겠슴다..
@@ -74,7 +82,7 @@ public class ConditionService {
         int cashAmount = 0;
         int financialAmount = 0;
 
-        for(Support support : supports){
+        for(Support support : matchingSupports){
             user.getSupports().add(support);
             totalAmount += support.getAmount();
             if(support.getType().equals("현금")){
@@ -100,7 +108,7 @@ public class ConditionService {
 
         if(a.getMaxAge()<b.getMaxAge())
             return false;
-        
+
         if(a.getIncomeGroup()>0 && b.getIncomeGroup()==0)
             return false;
 
@@ -122,19 +130,25 @@ public class ConditionService {
             if(!a.getProvince().equals(b.getProvince())){
                 return false;
             }else{
-                if(!a.getDistrict().equals(b.getDistrict()))
+                if(!a.getDistrict().isEmpty() && !a.getDistrict().equals(b.getDistrict()))
                     return false;
             }
         }
         if(a.getOccupation()<4){
+            if(a.getOccupation()==0){
+                if(b.getOccupation()!=0)
+                    return false;
+            }
             if(a.getOccupation()==1){
-                if(a.getIsTemporary()!=b.getIsTemporary())
+                if(a.getIsTemporary()!=b.getIsTemporary() || b.getOccupation()!=1)
                     return false;
             }else if(a.getOccupation()==2){
-                if(a.getIsUnemployed()!=b.getIsUnemployed())
+                if(a.getIsUnemployed()!=b.getIsUnemployed() || b.getOccupation()!=2)
                     return false;
             }else if(a.getOccupation()==3){
-                if(!a.getBusinessType().isEmpty()){
+                if(b.getOccupation()!=3)
+                    return false;
+                if(a.getBusinessType()!=null && !a.getBusinessType().isEmpty() ){
                     if(!a.getBusinessType().equals(b.getBusinessType()))
                         return false;
                 }
