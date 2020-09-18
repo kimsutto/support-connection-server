@@ -11,6 +11,6 @@ public class SupportResponse {
     private String category;
     private String site;
     private int isLocal;
-    private int type;
+    private String type;
     private int amount;
 }

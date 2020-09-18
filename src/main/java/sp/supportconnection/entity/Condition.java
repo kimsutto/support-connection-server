@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -21,6 +22,12 @@ public class Condition {
     private String province;
 
     private String district;
+
+    @Column(name="min_age")
+    private int minAge;
+
+    @Column(name="max_age")
+    private  int maxAge;
 
     @Column(name="income_group")
     private int incomeGroup;
@@ -58,6 +65,6 @@ public class Condition {
     private int businessScale;
 
     @Column(name="annual_sale")
-    private int annualSale;
+    private Integer annualSale;
 
 }

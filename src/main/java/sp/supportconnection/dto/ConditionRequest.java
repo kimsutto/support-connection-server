@@ -7,6 +7,8 @@ public class ConditionRequest{
     private Long userId;
     private String province;
     private String district;
+    private int minAge;
+    private int maxAge;
     private int incomeGroup;
     private int annualIncome;
     private int isMarried;

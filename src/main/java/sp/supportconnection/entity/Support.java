@@ -27,7 +27,7 @@ public class Support {
     @Column(name="is_local")
     private int isLocal;
 
-    private int type;
+    private String type;
 
     private int amount;
 
