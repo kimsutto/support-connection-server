@@ -37,6 +37,8 @@ public class ConditionService {
 
         condition.get().setProvince(request.getProvince());
         condition.get().setDistrict(request.getDistrict());
+        condition.get().setMinAge(request.getMinAge());
+        condition.get().setMaxAge(request.getMaxAge());
         condition.get().setIncomeGroup(request.getIncomeGroup());
         condition.get().setAnnualIncome(request.getAnnualIncome());
         condition.get().setIsMarried(request.getIsMarried());
@@ -95,9 +97,56 @@ public class ConditionService {
     }
 
     boolean matching(Condition a, Condition b){
+
+        if(a.getMaxAge()<b.getMaxAge())
+            return false;
+        
+        if(a.getIncomeGroup()>0 && b.getIncomeGroup()==0)
+            return false;
+
+        if(a.getAnnualIncome()>0 && b.getAnnualIncome()>a.getAnnualIncome())
+            return false;
+
+        if(a.getIsMarried()!=b.getIsMarried())
+            return false;
+
+        if(a.getIsPregnant()!=b.getIsPregnant())
+            return false;
+
+        if(a.getHaveChild()==1){
+            if(b.getHaveChild()==0 || b.getMaxChildAge()>a.getMaxChildAge())
+                return false;
+        }
+
+        if(!a.getProvince().isEmpty()){
+            if(!a.getProvince().equals(b.getProvince())){
+                return false;
+            }else{
+                if(!a.getDistrict().equals(b.getDistrict()))
+                    return false;
+            }
+        }
+        if(a.getOccupation()<4){
+            if(a.getOccupation()==1){
+                if(a.getIsTemporary()!=b.getIsTemporary())
+                    return false;
+            }else if(a.getOccupation()==2){
+                if(a.getIsUnemployed()!=b.getIsUnemployed())
+                    return false;
+            }else if(a.getOccupation()==3){
+                if(!a.getBusinessType().isEmpty()){
+                    if(!a.getBusinessType().equals(b.getBusinessType()))
+                        return false;
+                }
+                if(a.getBusinessScale()!=b.getBusinessScale())
+                    return false;
+                if(a.getAnnualSale()!=0 && a.getAnnualSale()!=b.getAnnualSale())
+                    return false;
+            }
+        }
+
         return true;
     }
-
 
 
 }
