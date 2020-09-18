@@ -22,6 +22,12 @@ public class Condition {
 
     private String district;
 
+    @Column(name="min_age")
+    private int minAge;
+
+    @Column(name="max_age")
+    private  int maxAge;
+
     @Column(name="income_group")
     private int incomeGroup;
 
