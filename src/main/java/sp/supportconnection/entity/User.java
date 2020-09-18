@@ -29,6 +29,9 @@ public class User {
 
     private int age;
 
+    @Column(name="child_age")
+    private int childAge;
+
     @OneToOne
     @JoinColumn(name = "condition_id")
     private Condition condition;

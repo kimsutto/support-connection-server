@@ -36,7 +36,8 @@ public class ConditionService {
         condition.get().setAnnualIncome(request.getAnnualIncome());
         condition.get().setIsMarried(request.getIsMarried());
         condition.get().setHaveChild(request.getHaveChild());
-        condition.get().setChildAge(request.getChildAge());
+        condition.get().setMinChildAge(request.getMinChildAge());
+        condition.get().setMaxChildAge(request.getMaxChildAge());
         condition.get().setIsPregnant(request.getIsPregnant());
         condition.get().setOccupation(request.getOccupation());
         condition.get().setIsTemporary(request.getIsTemporary());

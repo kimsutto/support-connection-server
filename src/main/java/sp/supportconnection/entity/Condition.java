@@ -34,8 +34,11 @@ public class Condition {
     @Column(name="have_child")
     private int haveChild;
 
-    @Column(name="child_age")
-    private int childAge;
+    @Column(name="min_child_age")
+    private int minChildAge;
+
+    @Column(name="max_child_age")
+    private int maxChildAge;
 
     @Column(name="is_pregnant")
     private int isPregnant;

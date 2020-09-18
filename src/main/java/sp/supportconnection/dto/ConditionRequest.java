@@ -11,7 +11,8 @@ public class ConditionRequest{
     private int annualIncome;
     private int isMarried;
     private int haveChild;
-    private int childAge;
+    private int minChildAge;
+    private int maxChildAge;
     private int isPregnant;
     private int occupation;
     private int isTemporary;
