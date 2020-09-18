@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Table(name="CONDITIONS")
 public class Condition {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="condition_id")
     private Long id;
 
