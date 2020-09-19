@@ -17,4 +17,12 @@ public class MeService {
         Asset newAsset = assetRepository.save(assetToUpdate);
         return newAsset;
     }
+
+    public Asset updateMyLoan(Asset assetToUpdate, int newLoan, int newInterestRate){
+        assetToUpdate.setLoan(newLoan);
+        assetToUpdate.setInterestRate(newInterestRate);
+
+        Asset newAsset = assetRepository.save(assetToUpdate);
+        return newAsset;
+    }
 }
