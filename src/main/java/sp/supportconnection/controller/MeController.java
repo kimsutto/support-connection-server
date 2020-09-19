@@ -12,6 +12,8 @@ import sp.supportconnection.service.UserService;
 import sp.supportconnection.service.MeService;
 import sp.supportconnection.entity.Asset;
 
+import java.util.Date;
+
 @RestController
 @RequiredArgsConstructor
 public class MeController {
@@ -51,4 +53,18 @@ public class MeController {
     }
 
     // 나의 지원금 잔액 입력하기
+    @PostMapping(value = "/me/support-remain", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity registerMySupportRemain(@RequestBody MeController.RegisterMySupportRemainRequest request){
+        Asset asset = userService.getAsset(request.getUserId());
+        int newSupportRemain = request.getSupportRemain();
+        Date newSupportDeadline = request.getSupportDeadline();
+        Asset newAsset = meService.updateMySupportRemain(asset, newSupportRemain, newSupportDeadline);
+        return ResponseEntity.ok(newAsset);
+    }
+    @Data
+    static class RegisterMySupportRemainRequest{
+        private Long userId;
+        private int supportRemain;
+        private Date supportDeadline;
+    }
 }
