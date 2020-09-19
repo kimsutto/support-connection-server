@@ -10,11 +10,11 @@ import sp.supportconnection.service.SupportService;
 
 @RestController
 @RequiredArgsConstructor
-public class EstimateController {
+public class ApplyController {
     private final SupportService supportService;
 
-    // 예상 지원금 개별 보기 -> id 는 support id
-    @GetMapping("/estimate/supports/{id}")
+    // 쉬운 지원금 신청 개별 보기 -> id 는 support id
+    @GetMapping("/apply/supports/{id}")
     public ResponseEntity getSupport(@PathVariable("id") Long id){
         SupportDetailResponse supportDetailResponse = supportService.getSupport(id);
         return ResponseEntity.ok(supportDetailResponse);
