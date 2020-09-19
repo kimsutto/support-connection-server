@@ -22,6 +22,8 @@ public class Support {
 
     private String category;
 
+    private float rate;
+
     private String site;
 
     @Column(name="is_local")

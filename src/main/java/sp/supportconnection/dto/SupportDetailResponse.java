@@ -10,6 +10,7 @@ public class SupportDetailResponse {
     private Long supportId;
     private String name;
     private String category;
+    private float rate;
     private String site;
     private int isLocal;
     private String type;
@@ -38,6 +39,11 @@ public class SupportDetailResponse {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public float getRate(){return rate;}
+
+    public void setRate(float rate){this.rate =rate;}
+
 
     public String getSite() {
         return site;

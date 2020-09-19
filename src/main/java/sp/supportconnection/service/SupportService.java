@@ -36,6 +36,7 @@ public class SupportService {
             response.setSupportId(support.getId());
             response.setName(support.getName());
             response.setCategory(support.getCategory());
+            response.setRate(support.getRate());
             response.setSite(support.getSite());
             response.setIsLocal(support.getIsLocal());
             response.setType(support.getType());
@@ -54,6 +55,7 @@ public class SupportService {
         result.setSupportId(support.get().getId());
         result.setName(support.get().getName());
         result.setCategory(support.get().getCategory());
+        result.setRate(support.get().getRate());
         result.setSite(support.get().getSite());
         result.setIsLocal(support.get().getIsLocal());
         result.setType(support.get().getType());
