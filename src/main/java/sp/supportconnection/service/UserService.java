@@ -34,7 +34,7 @@ public class UserService {
             Optional<User> findUser2 = userRepository.findByPhoneNumber(user.getPhoneNumber());
             Long userId = findUser2.get().getId();
 
-            Asset asset = new Asset(0,0);
+            Asset asset = new Asset(0,0,0,0,0.0f,3);
             assetRepository.save(asset);
 
             AvailableSupport availableSupport = new AvailableSupport(0,0,0);
@@ -63,6 +63,10 @@ public class UserService {
             userInfoResponse.setFinancialAmount(user.get().getAvailableSupport().getFinancialAmount());
             userInfoResponse.setMyAsset(user.get().getAsset().getMyAsset());
             userInfoResponse.setSupportRemain(user.get().getAsset().getSupportRemain());
+            userInfoResponse.setAnnualIncome(user.get().getAsset().getAnnualIncome());
+            userInfoResponse.setLoan(user.get().getAsset().getLoan());
+            userInfoResponse.setInterestRate(user.get().getAsset().getInterestRate());
+            userInfoResponse.setCreditRate(user.get().getAsset().getCreditRate());
         }
         return userInfoResponse;
     }
@@ -75,6 +79,10 @@ public class UserService {
         private int financialAmount;
         private int myAsset;
         private int supportRemain;
+        private int annualIncome;
+        private int loan;
+        private float interestRate;
+        private int creditRate;
     }
 
 }

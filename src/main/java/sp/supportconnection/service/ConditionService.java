@@ -152,9 +152,9 @@ public class ConditionService {
                     if(!a.getBusinessType().equals(b.getBusinessType()))
                         return false;
                 }
-                if(a.getBusinessScale()!=b.getBusinessScale())
+                if(a.getBusinessScale()!=4 && a.getBusinessScale()!=b.getBusinessScale())
                     return false;
-                if(a.getAnnualSale()!=0 && a.getAnnualSale()!=b.getAnnualSale())
+                if(a.getAnnualSale()!=0 && a.getAnnualSale() < b.getAnnualSale())
                     return false;
             }
         }
