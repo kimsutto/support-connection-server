@@ -3,13 +3,17 @@ package sp.supportconnection.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sp.supportconnection.dto.SupportDetailResponse;
 import sp.supportconnection.dto.SupportResponse;
 import sp.supportconnection.entity.Support;
 import sp.supportconnection.entity.User;
+import sp.supportconnection.entity.SupportDetail;
 import sp.supportconnection.repository.SupportRepository;
 import sp.supportconnection.repository.UserRepository;
+import sp.supportconnection.repository.SupportDetailRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +23,7 @@ import java.util.Optional;
 public class SupportService {
     private final SupportRepository supportRepository;
     private final UserRepository userRepository;
+    private final SupportDetailRepository supportDetailRepository;
 
 
     public List<SupportResponse> getSupports(Long id){
@@ -38,9 +43,30 @@ public class SupportService {
             results.add(response);
         }
 
-
         return results;
     }
 
+    public SupportDetailResponse getSupport(Long id){
+        Optional<Support> support = supportRepository.findSupportBySupportDetailId(id);
+        Optional<SupportDetail> supportDetail = supportDetailRepository.findById(id);
+
+        SupportDetailResponse result = new SupportDetailResponse();
+        result.setSupportId(support.get().getId());
+        result.setName(support.get().getName());
+        result.setCategory(support.get().getCategory());
+        result.setSite(support.get().getSite());
+        result.setIsLocal(support.get().getIsLocal());
+        result.setType(support.get().getType());
+        result.setAmount(support.get().getAmount());
+        result.setQualification(supportDetail.get().getQualification());
+        result.setInfo(supportDetail.get().getInfo());
+        result.setApplyInfo(supportDetail.get().getApplyInfo());
+        result.setRequiredDocuments(supportDetail.get().getRequiredDocuments());
+        result.setDeadline(supportDetail.get().getDeadline());
+        result.setUrl(supportDetail.get().getUrl());
+        result.setContact(supportDetail.get().getContact());
+
+        return result;
+    }
 
 }

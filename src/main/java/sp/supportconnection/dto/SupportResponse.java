@@ -3,7 +3,6 @@ package sp.supportconnection.dto;
 import lombok.Data;
 
 
-
 @Data
 public class SupportResponse {
     private Long supportId;
@@ -11,6 +10,6 @@ public class SupportResponse {
     private String category;
     private String site;
     private int isLocal;
-    private int type;
+    private String type;
     private int amount;
 }
