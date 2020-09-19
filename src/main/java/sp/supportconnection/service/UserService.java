@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import sp.supportconnection.dto.ReduceFinanceAssetResponse;
 import sp.supportconnection.dto.SupportResponse;
+import sp.supportconnection.dto.GetSupportRemainResponse;
 import sp.supportconnection.entity.*;
 import sp.supportconnection.repository.AssetRepository;
 import sp.supportconnection.repository.AvailableSupportRepository;
@@ -130,6 +131,17 @@ public class UserService {
         return response;
     }
 
+    public GetSupportRemainResponse getSupportRemain(Long id){
+        Optional<User> user = userRepository.findById(id);
+        Long assetId = user.get().getAsset().getId();
+        Optional<Asset> asset = assetRepository.findById(assetId);
 
+        GetSupportRemainResponse getSupportRemainResponse = new GetSupportRemainResponse();
+        getSupportRemainResponse.setName(user.get().getName());
+        getSupportRemainResponse.setSupportRemain(asset.get().getSupportRemain());
+        getSupportRemainResponse.setSupportDeadline(asset.get().getSupportDeadline());
+
+        return getSupportRemainResponse;
+    }
 
 }
