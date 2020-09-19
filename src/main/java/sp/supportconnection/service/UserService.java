@@ -3,16 +3,17 @@ package sp.supportconnection.service;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import sp.supportconnection.entity.Asset;
-import sp.supportconnection.entity.AvailableSupport;
-import sp.supportconnection.entity.Condition;
-import sp.supportconnection.entity.User;
+import sp.supportconnection.dto.ReduceFinanceAssetResponse;
+import sp.supportconnection.dto.SupportResponse;
+import sp.supportconnection.entity.*;
 import sp.supportconnection.repository.AssetRepository;
 import sp.supportconnection.repository.AvailableSupportRepository;
 import sp.supportconnection.repository.ConditionRepository;
 import sp.supportconnection.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -84,5 +85,44 @@ public class UserService {
         private float interestRate;
         private int creditRate;
     }
+
+    public ReduceFinanceAssetResponse getReduceFinance(Long id){
+        Optional<User> user = userRepository.findById(id);
+        ReduceFinanceAssetResponse response = new ReduceFinanceAssetResponse();
+        response.setName(user.get().getName());
+        float interestRate = user.get().getAsset().getInterestRate();
+        response.setInterestRate(interestRate);
+        response.setCreditRate(user.get().getAsset().getCreditRate());
+
+        //계산
+        int loan = user.get().getAsset().getLoan();
+
+        response.setCurrentInterest((int) (loan*interestRate*0.01));
+
+
+        response.setAnnualIncome(user.get().getAsset().getAnnualIncome());
+        response.setMyAsset(user.get().getAsset().getMyAsset());
+
+        List<Support> supports = user.get().getSupports();
+        List<SupportResponse> supportResponses = new ArrayList<>();
+        float supportRate = 0.0f;
+        for(Support support : supports){
+            SupportResponse sp = new SupportResponse();
+            sp.setSupportId(support.getId());
+            sp.setName(support.getName());
+            sp.setSite(support.getSite());
+            supportRate = support.getRate();
+            sp.setRate(supportRate);
+
+            sp.setReduceInterest((int) (loan*interestRate*0.01 - loan*supportRate*0.01));
+            supportResponses.add(sp);
+        }
+        response.setSupports(supportResponses);
+        response.setReduceInterest((int) (loan*interestRate*0.01 - loan*supportRate*0.01));
+
+        return response;
+    }
+
+
 
 }

@@ -13,4 +13,5 @@ public class SupportResponse {
     private int isLocal;
     private String type;
     private int amount;
+    private int reduceInterest;
 }
