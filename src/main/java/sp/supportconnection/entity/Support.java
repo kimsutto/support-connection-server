@@ -35,4 +35,8 @@ public class Support {
     @JoinColumn(name = "condition_id")
     private Condition condition;
 
+    @OneToOne
+    @JoinColumn(name = "support_detail_id")
+    private SupportDetail supportDetail;
+
 }

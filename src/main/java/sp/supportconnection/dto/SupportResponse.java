@@ -3,7 +3,6 @@ package sp.supportconnection.dto;
 import lombok.Data;
 
 
-
 @Data
 public class SupportResponse {
     private Long supportId;

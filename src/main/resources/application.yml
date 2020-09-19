@@ -2,8 +2,8 @@ spring :
   datasource :
     driver-class-name : com.mysql.cj.jdbc.Driver
     url : jdbc:mysql://db-4s5bv.pub-cdb.ntruss.com:3306/support-connection?serverTimezone=UTC&characterEncoding=UTF-8
-    username : #username
-    password: #passwd
+    username :
+    password :
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
