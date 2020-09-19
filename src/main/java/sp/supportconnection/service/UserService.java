@@ -85,4 +85,10 @@ public class UserService {
         private int creditRate;
     }
 
+    public Asset getAsset(Long userId){
+        Optional<User> user = userRepository.findById(userId);
+        Asset asset = user.get().getAsset();
+        return asset;
+    }
+
 }
