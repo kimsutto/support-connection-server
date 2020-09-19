@@ -86,6 +86,12 @@ public class UserService {
         private int creditRate;
     }
 
+    public Asset getAsset(Long userId){
+        Optional<User> user = userRepository.findById(userId);
+        Asset asset = user.get().getAsset();
+        return asset;
+    }
+
     public ReduceFinanceAssetResponse getReduceFinance(Long id){
         Optional<User> user = userRepository.findById(id);
         ReduceFinanceAssetResponse response = new ReduceFinanceAssetResponse();
