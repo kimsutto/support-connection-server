@@ -20,9 +20,10 @@ public class MeService {
         return newAsset;
     }
 
-    public Asset updateMyLoan(Asset assetToUpdate, int newLoan, int newInterestRate){
+    public Asset updateMyLoan(Asset assetToUpdate, int newLoan, int newInterestRate, int newCreditRate){
         assetToUpdate.setLoan(newLoan);
         assetToUpdate.setInterestRate(newInterestRate);
+        assetToUpdate.setCreditRate(newCreditRate);
 
         Asset newAsset = assetRepository.save(assetToUpdate);
         return newAsset;
