@@ -13,6 +13,7 @@ import sp.supportconnection.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ public class UserService {
             Optional<User> findUser2 = userRepository.findByPhoneNumber(user.getPhoneNumber());
             Long userId = findUser2.get().getId();
 
-            Asset asset = new Asset(0,0,0,0,0.0f,3);
+            Asset asset = new Asset(0,0, new Date(),0,0,0.0f,3);
             assetRepository.save(asset);
 
             AvailableSupport availableSupport = new AvailableSupport(0,0,0);
