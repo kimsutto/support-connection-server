@@ -42,7 +42,8 @@ public class MeController {
         Asset asset = userService.getAsset(request.getUserId());
         int newLoan = request.getLoan();
         int newInterestRate = request.getInterestRate();
-        Asset newAsset = meService.updateMyLoan(asset, newLoan, newInterestRate);
+        int newCreditRate = request.getCreditRate();
+        Asset newAsset = meService.updateMyLoan(asset, newLoan, newInterestRate, newCreditRate);
         return ResponseEntity.ok(newAsset);
     }
     @Data
@@ -50,6 +51,7 @@ public class MeController {
         private Long userId;
         private int loan;
         private int interestRate;
+        private int creditRate;
     }
 
     // 나의 지원금 잔액 입력하기
