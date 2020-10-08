@@ -37,19 +37,15 @@
   <tr>
     <th><img width="600" alt="스크린샷 2019-12-23 오후 2 10 00" src="./readmefile/2.png"></th>
     <th><img width="600" alt="스크린샷 2019-12-23 오후 2 10 00" src="./readmefile/3.png"></th>
-  </tr>
-  <tr>
-    <td>나의 예상 지원금 확인하기</td>
-    <td>쉬운 지원금 신청하기</td>
-  </tr>
-  <tr>
     <td><img width="600" alt="스크린샷 2019-12-23 오후 2 10 00" src="./readmefile/4.png"></td>
     <td><img width="600" alt="스크린샷 2019-12-23 오후 2 10 00" src="./readmefile/5.png"></td>
   </tr>
   <tr>
+    <td>나의 예상 지원금 확인하기</td>
+    <td>쉬운 지원금 신청하기</td>
     <td>금융 비용 줄이기</td>
     <td>지원금 잔액 관리</td>
-  </tr> 
+  </tr>
 </table>
 
 
